@@ -15,11 +15,10 @@ React와 Typescript로 간단한 navigation view를 만들어 보았습니다.
 
 ## 기술 스택
 
-| category       | stack                               |
+| Types       | Techs                               |
 | -------------- | ----------------------------------- |
-| Language       | Typescript                          |
-| SPA Library    | React                               |
-| Bundler        | Vite                                |
-| Styling        | Tailwindcss, React-transition-group |
-| Code Formatter | Eslint, Prettier                    |
-| language       | typescript                          |
+| Language       | <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"/> |
+| SPA Library    | <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/> |
+| Bundler        | <img src="https://img.shields.io/badge/vite-646CFF?style=flat&logo=vite&logoColor=white"/> |
+| Styling        | <img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=flat-square&logo=Tailwind CSS&logoColor=white"/> , React-transition-group |
+| Code Formatter | <img src="https://img.shields.io/badge/eslint-4B32C3?style=flat-square&logo=eslint&logoColor=white"/> , <img src="https://img.shields.io/badge/prettier-F7B93E?style=flat-square&logo=prettier&logoColor=white"/>|
