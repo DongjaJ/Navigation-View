@@ -4,10 +4,24 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
+type NavigationState = {
+  pageHistory: string[];
+  currentPage: string;
+};
+
+type AnimationDirection = 'forward' | 'backward';
+
+const initialNavigation = {
+  pageHistory: [],
+  currentPage: 'home',
+};
+
+const ANIMATION_DURATION = 500;
+
 export default function App() {
-  const [pageHistory, setPageHistory] = useState<string[]>([]);
-  const [currentPage, setCurrentPage] = useState<string>('home');
-  const [direction, setDirection] = useState('forward');
+  const [navigation, setNavigation] =
+    useState<NavigationState>(initialNavigation);
+  const [direction, setDirection] = useState<AnimationDirection>('forward');
 
   const isEmptyPageHistory = (pageHistory: string[]) =>
     pageHistory.length === 0;
@@ -21,22 +35,26 @@ export default function App() {
   }
 
   async function moveToPrevPage() {
-    const prevPage = getPrevPage(pageHistory);
+    const prevPage = getPrevPage(navigation.pageHistory);
     if (!prevPage) {
       return;
     }
     await setDirection('backward');
-    setCurrentPage(prevPage);
-    setPageHistory((prevPageHistory) =>
-      prevPageHistory.filter((page) => page != prevPage),
-    );
+    setNavigation(({ pageHistory }) => ({
+      pageHistory: pageHistory.filter((page) => page != prevPage),
+      currentPage: prevPage,
+    }));
   }
 
   async function moveToNextPage(nextPage: string) {
     await setDirection('forward');
-    setPageHistory((prevPageHistory) => [...prevPageHistory, currentPage]);
-    setCurrentPage(nextPage);
+    setNavigation(({ pageHistory, currentPage }) => ({
+      pageHistory: [...pageHistory, currentPage],
+      currentPage: nextPage,
+    }));
   }
+
+  const { pageHistory, currentPage } = navigation;
 
   return (
     <div className="relative flex flex-col">
@@ -46,7 +64,11 @@ export default function App() {
         title={currentPage}
       />
       <TransitionGroup>
-        <CSSTransition key={currentPage} timeout={500} classNames={direction}>
+        <CSSTransition
+          key={currentPage}
+          timeout={ANIMATION_DURATION}
+          classNames={direction}
+        >
           <Page
             currentPage={currentPage}
             nextPage={getNextPage()}
