@@ -9,3 +9,35 @@
 #app {
   @apply w-full max-w-screen-2xl;
 }
+
+.backward-enter {
+  transform: translateX(100%);
+}
+.backward-enter-active {
+  transform: translateX(0);
+  transition: all 500ms ease;
+}
+
+.backward-exit {
+  transform: translateX(0);
+}
+.backward-exit-active {
+  transform: translateX(-100%);
+  transition: all 500ms ease;
+}
+
+.forward-enter {
+  transform: translateX(-100%);
+}
+.forward-enter-active {
+  transform: translateX(0);
+  transition: all 500ms ease;
+}
+
+.forward-exit {
+  transform: translateX(0);
+}
+.forward-exit-active {
+  transform: translateX(100%);
+  transition: all 500ms ease;
+}
