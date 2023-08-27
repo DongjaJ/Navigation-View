@@ -1,8 +1,9 @@
 import Header from './components/Header';
 import Page from './components/Page';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import useSessionHistory from './hooks/useSessionHistory';
 
 type NavigationState = {
   pageHistory: string[];
@@ -13,15 +14,19 @@ type AnimationDirection = 'forward' | 'backward';
 
 const initialNavigation = {
   pageHistory: [],
-  currentPage: 'home',
+  currentPage: 'Home',
 };
 
 const ANIMATION_DURATION = 500;
 
 export default function App() {
-  const [navigation, setNavigation] =
-    useState<NavigationState>(initialNavigation);
+  const [navigation, setNavigation] = useSessionHistory<NavigationState>(
+    'navigation',
+    initialNavigation,
+  );
   const [direction, setDirection] = useState<AnimationDirection>('forward');
+
+  const { pageHistory, currentPage } = navigation;
 
   const isEmptyPageHistory = (pageHistory: string[]) =>
     pageHistory.length === 0;
@@ -35,29 +40,31 @@ export default function App() {
   }
 
   async function moveToPrevPage() {
-    const prevPage = getPrevPage(navigation.pageHistory);
+    const prevPage = getPrevPage(pageHistory);
     if (!prevPage) {
       return;
     }
     await setDirection('backward');
-    setNavigation(({ pageHistory }) => ({
-      pageHistory: pageHistory.filter((page) => page != prevPage),
+    setNavigation({
+      pageHistory: pageHistory.filter((page: string) => page != prevPage),
       currentPage: prevPage,
-    }));
+    });
   }
 
   async function moveToNextPage(nextPage: string) {
     await setDirection('forward');
-    setNavigation(({ pageHistory, currentPage }) => ({
+    setNavigation({
       pageHistory: [...pageHistory, currentPage],
       currentPage: nextPage,
-    }));
+    });
   }
 
-  const { pageHistory, currentPage } = navigation;
+  useEffect(() => {
+    setDirection(navigation);
+  }, [navigation]);
 
   return (
-    <div className="relative flex flex-col">
+    <div className="relative flex flex-col w-full">
       <Header
         prevPage={getPrevPage(pageHistory)}
         onClick={moveToPrevPage}

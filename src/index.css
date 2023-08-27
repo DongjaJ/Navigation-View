@@ -6,7 +6,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-#app {
+#root {
   @apply w-full max-w-screen-2xl;
 }
 
