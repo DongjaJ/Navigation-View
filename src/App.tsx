@@ -4,27 +4,16 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-type NavigationState = {
-  pageHistory: string[];
-  currentPage: string;
-};
-
-const initialNavigation = {
-  pageHistory: [],
-  currentPage: 'home',
-};
-
 export default function App() {
-  const [navigation, setNavigation] =
-    useState<NavigationState>(initialNavigation);
+  const [pageHistory, setPageHistory] = useState<string[]>([]);
+  const [currentPage, setCurrentPage] = useState<string>('home');
   const [direction, setDirection] = useState('forward');
 
-  const isEmptyPageHistory = (pageHistory) => pageHistory.length === 0;
+  const isEmptyPageHistory = (pageHistory: string[]) =>
+    pageHistory.length === 0;
 
-  function getPrevPage(pageHistory) {
-    return isEmptyPageHistory(pageHistory)
-      ? undefined
-      : pageHistory[pageHistory.length - 1];
+  function getPrevPage(pageHistory: string[]) {
+    return isEmptyPageHistory(pageHistory) ? undefined : pageHistory.at(-1);
   }
 
   function getNextPage() {
@@ -32,42 +21,34 @@ export default function App() {
   }
 
   async function moveToPrevPage() {
-    const prevPage = getPrevPage(navigation.pageHistory);
+    const prevPage = getPrevPage(pageHistory);
     if (!prevPage) {
       return;
     }
     await setDirection('backward');
-    setNavigation((prevNavigation) => ({
-      pageHistory: prevNavigation.pageHistory.filter(
-        (page) => page != prevPage,
-      ),
-      currentPage: prevPage,
-    }));
+    setCurrentPage(prevPage);
+    setPageHistory((prevPageHistory) =>
+      prevPageHistory.filter((page) => page != prevPage),
+    );
   }
 
   async function moveToNextPage(nextPage: string) {
     await setDirection('forward');
-    setNavigation((prevNavigation) => ({
-      pageHistory: [...prevNavigation.pageHistory, prevNavigation.currentPage],
-      currentPage: nextPage,
-    }));
+    setPageHistory((prevPageHistory) => [...prevPageHistory, currentPage]);
+    setCurrentPage(nextPage);
   }
 
   return (
     <div className="relative flex flex-col">
       <Header
-        prevPage={getPrevPage(navigation.pageHistory)}
+        prevPage={getPrevPage(pageHistory)}
         onClick={moveToPrevPage}
-        title={navigation.currentPage}
+        title={currentPage}
       />
       <TransitionGroup>
-        <CSSTransition
-          key={navigation.currentPage}
-          timeout={500}
-          classNames={direction}
-        >
+        <CSSTransition key={currentPage} timeout={500} classNames={direction}>
           <Page
-            currentPage={navigation.currentPage}
+            currentPage={currentPage}
             nextPage={getNextPage()}
             onClick={moveToNextPage}
           />

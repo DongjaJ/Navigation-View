@@ -1,6 +1,12 @@
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
-export default function Header({ prevPage, title, onClick }) {
+type HeaderProps = {
+  prevPage?: string;
+  title: string;
+  onClick: () => void;
+};
+
+export default function Header({ prevPage, title, onClick }: HeaderProps) {
   return (
     <header className="flex items-center">
       {prevPage && (
