@@ -8,16 +8,16 @@ type HeaderProps = {
 
 export default function Header({ prevPage, title, onClick }: HeaderProps) {
   return (
-    <header className="flex items-center flex-grow-0 justify-center md:justify-normal gap-2">
+    <header className="flex items-center flex-grow-0 md:justify-normal gap-2">
       {prevPage && (
-        <button className="flex items-center text-2xl" onClick={onClick}>
+        <button className="p-2 flex items-center text-2xl" onClick={onClick}>
           <AiOutlineArrowLeft />
-          <span className="hidden md:inline-flex line-clamp-1 break-all text-ellipsis">
+          <p className="max-w-xs hidden lg:inline-flex line-clamp-1 break-all text-ellipsis">
             {prevPage}
-          </span>
+          </p>
         </button>
       )}
-      <h1 className="flex-grow max-w-xs md:max-w-none shrink-0 text-center font-bold text-4xl line-clamp-1 break-all">
+      <h1 className="absolute max-w-xs top-0 left-2/4 -translate-x-2/4 font-bold text-4xl line-clamp-1 break-all">
         {title}
       </h1>
     </header>

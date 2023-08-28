@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 
-export default function useSessionHistory<T>(key: string, initialValue: T) {
+export default function useSessionHistory<T>(
+  key: string,
+  initialValue: T,
+): [T, Dispatch<SetStateAction<T>>] {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const data = sessionStorage.getItem(key);

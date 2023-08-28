@@ -46,7 +46,7 @@ export default function Navigation() {
     }
     await setDirection('backward');
     setNavigation({
-      pageHistory: pageHistory.filter((page: string) => page != prevPage),
+      pageHistory: pageHistory.filter((page) => page != prevPage),
       currentPage: prevPage,
     });
   }
@@ -60,7 +60,7 @@ export default function Navigation() {
   }
 
   useEffect(() => {
-    setDirection(navigation);
+    setNavigation(navigation);
   }, [navigation]);
 
   return (
