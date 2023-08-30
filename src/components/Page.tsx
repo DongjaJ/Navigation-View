@@ -10,15 +10,11 @@ type PageProps = {
 export default function Page({ currentPage, nextPage, onClick }: PageProps) {
   return (
     <div className="absolute w-full h-[60vh] flex flex-col justify-center items-center gap-2 top-20">
-      <h3
-        className={`font-semibold text-xl font-bold ${getColor(
-          currentPage.type,
-        )}`}
-      >
+      <h3 className={`text-xl font-bold ${getColor(currentPage.type)}`}>
         Welcone to {currentPage.type}'s Page!
       </h3>
       <img
-        src={currentPage.src}
+        src={`${import.meta.env.VITE_PUBLIC_URL}${currentPage.src}`}
         alt="슬기1"
         className="w-full h-full object-scale-down"
       />
