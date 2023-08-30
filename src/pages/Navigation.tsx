@@ -4,17 +4,28 @@ import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import useSessionHistory from '@/hooks/useSessionHistory';
+import { getRandomImagePath } from '@/utils/MockImage';
+
+export type PageInformation = {
+  id: string;
+  src: string;
+  type: string;
+};
 
 type NavigationState = {
-  pageHistory: string[];
-  currentPage: string;
+  pageHistory: PageInformation[];
+  currentPage: PageInformation;
 };
 
 type AnimationDirection = 'forward' | 'backward';
 
 const initialNavigation = {
   pageHistory: [],
-  currentPage: 'Home',
+  currentPage: {
+    id: nanoid(),
+    src: '/public/images/슬기1.jpeg',
+    type: 'SEULGI',
+  },
 };
 
 const ANIMATION_DURATION = 500;
@@ -28,15 +39,18 @@ export default function Navigation() {
 
   const { pageHistory, currentPage } = navigation;
 
-  const isEmptyPageHistory = (pageHistory: string[]) =>
+  const isEmptyPageHistory = (pageHistory: PageInformation[]) =>
     pageHistory.length === 0;
 
-  function getPrevPage(pageHistory: string[]) {
+  function getPrevPage(pageHistory: PageInformation[]) {
     return isEmptyPageHistory(pageHistory) ? undefined : pageHistory.at(-1);
   }
 
   function getNextPage() {
-    return nanoid();
+    return {
+      ...getRandomImagePath(),
+      id: nanoid(),
+    };
   }
 
   async function moveToPrevPage() {
@@ -46,12 +60,12 @@ export default function Navigation() {
     }
     await setDirection('backward');
     setNavigation({
-      pageHistory: pageHistory.filter((page) => page != prevPage),
+      pageHistory: pageHistory.filter(({ id }) => id != prevPage.id),
       currentPage: prevPage,
     });
   }
 
-  async function moveToNextPage(nextPage: string) {
+  async function moveToNextPage(nextPage: PageInformation) {
     await setDirection('forward');
     setNavigation({
       pageHistory: [...pageHistory, currentPage],
@@ -64,15 +78,15 @@ export default function Navigation() {
   }, [navigation]);
 
   return (
-    <div className="relative flex flex-col w-full">
+    <div className="relative flex flex-col w-full h-full bg-blue-600">
       <Header
         prevPage={getPrevPage(pageHistory)}
         onClick={moveToPrevPage}
-        title={currentPage}
+        title={currentPage.type}
       />
       <TransitionGroup>
         <CSSTransition
-          key={currentPage}
+          key={currentPage.id}
           timeout={ANIMATION_DURATION}
           classNames={direction}
         >
