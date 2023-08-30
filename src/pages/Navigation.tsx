@@ -24,7 +24,7 @@ const initialNavigation = {
   pageHistory: [],
   currentPage: {
     id: nanoid(),
-    src: '/images/슬기1.jpeg',
+    src: '/images/SEULGI1.jpeg',
     type: 'SEULGI',
   },
 };

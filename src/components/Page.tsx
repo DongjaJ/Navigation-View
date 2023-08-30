@@ -7,6 +7,10 @@ type PageProps = {
   onClick: (nextPage: PageInformation) => void;
 };
 
+function getImageUrl(imageUrl: string) {
+  return new URL(imageUrl, import.meta.url).href;
+}
+
 export default function Page({ currentPage, nextPage, onClick }: PageProps) {
   return (
     <div className="absolute w-full h-[60vh] flex flex-col justify-center items-center gap-2 top-20">
@@ -14,8 +18,8 @@ export default function Page({ currentPage, nextPage, onClick }: PageProps) {
         Welcone to {currentPage.type}'s Page!
       </h3>
       <img
-        src={`${import.meta.env.VITE_PUBLIC_URL}${currentPage.src}`}
-        alt="슬기1"
+        src={getImageUrl(currentPage.src)}
+        alt={currentPage.type}
         className="w-full h-full object-scale-down"
       />
       <button

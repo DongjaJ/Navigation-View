@@ -1,122 +1,122 @@
 export const mockData = [
   {
-    src: '/images/슬기1.jpeg',
+    src: '/images/SEULGI1.jpeg',
     type: 'SEULGI',
   },
   {
-    src: '/images/슬기2.jpeg',
+    src: '/images/SEULGI2.jpeg',
     type: 'SEULGI',
   },
   {
-    src: '/images/슬기3.jpeg',
+    src: '/images/SEULGI3.jpeg',
     type: 'SEULGI',
   },
   {
-    src: '/images/슬기4.jpeg',
+    src: '/images/SEULGI4.jpeg',
     type: 'SEULGI',
   },
   {
-    src: '/images/슬기5.jpeg',
+    src: '/images/SEULGI5.jpeg',
     type: 'SEULGI',
   },
   {
-    src: '/images/슬기6.jpeg',
+    src: '/images/SEULGI6.jpeg',
     type: 'SEULGI',
   },
   {
-    src: '/images/슬기7.jpeg',
+    src: '/images/SEULGI7.jpeg',
     type: 'SEULGI',
   },
   {
-    src: '/images/슬기8.jpeg',
+    src: '/images/SEULGI8.jpeg',
     type: 'SEULGI',
   },
   {
-    src: '/images/슬기9.jpeg',
+    src: '/images/SEULGI9.jpeg',
     type: 'SEULGI',
   },
   {
-    src: '/images/슬기10.jpeg',
+    src: '/images/SEULGI10.jpeg',
     type: 'SEULGI',
   },
   {
-    src: '/images/아이린1.jpeg',
+    src: '/images/IRENE1.jpeg',
     type: 'IRENE',
   },
   {
-    src: '/images/아이린2.jpeg',
+    src: '/images/IRENE2.jpeg',
     type: 'IRENE',
   },
   {
-    src: '/images/아이린3.jpeg',
+    src: '/images/IRENE3.jpeg',
     type: 'IRENE',
   },
   {
-    src: '/images/아이린4.jpeg',
+    src: '/images/IRENE4.jpeg',
     type: 'IRENE',
   },
   {
-    src: '/images/아이린5.jpeg',
+    src: '/images/IRENE5.jpeg',
     type: 'IRENE',
   },
   {
-    src: '/images/예리1.jpeg',
+    src: '/images/YERI1.jpeg',
     type: 'YERI',
   },
   {
-    src: '/images/예리2.jpeg',
+    src: '/images/YERI2.jpeg',
     type: 'YERI',
   },
   {
-    src: '/images/예리3.jpeg',
+    src: '/images/YERI3.jpeg',
     type: 'YERI',
   },
   {
-    src: '/images/예리4.jpeg',
+    src: '/images/YERI4.jpeg',
     type: 'YERI',
   },
   {
-    src: '/images/예리5.jpeg',
+    src: '/images/YERI5.jpeg',
     type: 'YERI',
   },
   {
-    src: '/images/조이1.jpeg',
+    src: '/images/JOY1.jpeg',
     type: 'JOY',
   },
   {
-    src: '/images/조이2.jpeg',
+    src: '/images/JOY2.jpeg',
     type: 'JOY',
   },
   {
-    src: '/images/조이3.jpeg',
+    src: '/images/JOY3.jpeg',
     type: 'JOY',
   },
   {
-    src: '/images/조이4.jpeg',
+    src: '/images/JOY4.jpeg',
     type: 'JOY',
   },
   {
-    src: '/images/조이5.jpeg',
+    src: '/images/JOY5.jpeg',
     type: 'JOY',
   },
   {
-    src: '/images/웬디1.jpeg',
+    src: '/images/WENDY1.jpeg',
     type: 'WENDY',
   },
   {
-    src: '/images/웬디2.jpeg',
+    src: '/images/WENDY2.jpeg',
     type: 'WENDY',
   },
   {
-    src: '/images/웬디3.jpeg',
+    src: '/images/WENDY3.jpeg',
     type: 'WENDY',
   },
   {
-    src: '/images/웬디4.jpeg',
+    src: '/images/WENDY4.jpeg',
     type: 'WENDY',
   },
   {
-    src: '/images/웬디5.jpeg',
+    src: '/images/WENDY5.jpeg',
     type: 'WENDY',
   },
   {
