@@ -1,4 +1,5 @@
 import { PageInformation } from '@/pages/Navigation';
+import { getColor } from '@/utils/helper';
 
 type PageProps = {
   currentPage: PageInformation;
@@ -8,19 +9,26 @@ type PageProps = {
 
 export default function Page({ currentPage, nextPage, onClick }: PageProps) {
   return (
-    <div className="absolute w-full h-[80vh] flex flex-col justify-center items-center gap-2 top-28">
-      {/* <h3 className="font-semibold text-xl text-purple-700">
-        {currentPage.type}
-      </h3> */}
+    <div className="absolute w-full h-[60vh] flex flex-col justify-center items-center gap-2 top-20">
+      <h3
+        className={`font-semibold text-xl font-bold ${getColor(
+          currentPage.type,
+        )}`}
+      >
+        Welcone to {currentPage.type}'s Page!
+      </h3>
       <img
         src={currentPage.src}
         alt="슬기1"
         className="w-full h-full object-scale-down"
       />
-      <button onClick={() => onClick(nextPage)}>
-        <span className=" text-blue-600 cursor-pointer">
-          {nextPage.type} Page
-        </span>
+      <button
+        className={`cursor-pointer font-semibold text-lg mt-4 p-4 px-8 rounded-full bg-gray-900 ${getColor(
+          nextPage.type,
+        )}`}
+        onClick={() => onClick(nextPage)}
+      >
+        go to {nextPage.type}'s Page
       </button>
     </div>
   );

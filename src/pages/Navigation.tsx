@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import useSessionHistory from '@/hooks/useSessionHistory';
 import { getRandomImagePath } from '@/utils/MockImage';
+import { useRef } from 'react';
 
 export type PageInformation = {
   id: string;
@@ -36,8 +37,8 @@ export default function Navigation() {
     initialNavigation,
   );
   const [direction, setDirection] = useState<AnimationDirection>('forward');
-
   const { pageHistory, currentPage } = navigation;
+  const nodeRef = useRef(null);
 
   const isEmptyPageHistory = (pageHistory: PageInformation[]) =>
     pageHistory.length === 0;
@@ -78,7 +79,7 @@ export default function Navigation() {
   }, [navigation]);
 
   return (
-    <div className="relative flex flex-col w-full h-full bg-blue-600">
+    <div className="relative flex flex-col w-full h-full">
       <Header
         prevPage={getPrevPage(pageHistory)}
         onClick={moveToPrevPage}
@@ -90,11 +91,13 @@ export default function Navigation() {
           timeout={ANIMATION_DURATION}
           classNames={direction}
         >
-          <Page
-            currentPage={currentPage}
-            nextPage={getNextPage()}
-            onClick={moveToNextPage}
-          />
+          <div ref={nodeRef} className="relative">
+            <Page
+              currentPage={currentPage}
+              nextPage={getNextPage()}
+              onClick={moveToNextPage}
+            />
+          </div>
         </CSSTransition>
       </TransitionGroup>
     </div>
