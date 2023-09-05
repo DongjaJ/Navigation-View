@@ -1,4 +1,4 @@
-import { PageInformation } from '@/pages/Navigation';
+import type { PageInformation } from '@/types';
 import { getColor } from '@/utils/helper';
 
 type PageProps = {
@@ -15,7 +15,7 @@ export default function Page({ currentPage, nextPage, onClick }: PageProps) {
   return (
     <div className="absolute w-full h-[60vh] flex flex-col justify-center items-center gap-2 top-20">
       <h3 className={`text-xl font-bold ${getColor(currentPage.type)}`}>
-        Welcone to {currentPage.type}'s Page!
+        Welcome to {currentPage.type}'s Page!
       </h3>
       <img
         src={getImageUrl(currentPage.src)}

@@ -1,9 +1,9 @@
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import { PageInformation } from '@/pages/Navigation';
+import type { PageInformation } from '@/types';
 import { getColor } from '@/utils/helper';
 
 type HeaderProps = {
-  prevPage?: PageInformation;
+  prevPage: PageInformation | null;
   title: string;
   onClick: () => void;
 };

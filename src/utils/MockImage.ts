@@ -1,4 +1,4 @@
-export const mockData = [
+const mockData = [
   {
     src: '/images/SEULGI1.jpeg',
     type: 'SEULGI',
@@ -134,6 +134,6 @@ export const mockData = [
 ];
 
 export function getRandomImagePath() {
-  const randomVariable = Math.floor(Math.random() * 32) + 1;
+  const randomVariable = Math.floor(Math.random() * (mockData.length - 1)) + 1;
   return mockData[randomVariable];
 }
